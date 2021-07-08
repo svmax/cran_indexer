@@ -1,0 +1,4 @@
+:concurrency: 45
+:retry: 3
+:queues:
+  - [versioning, 1]
