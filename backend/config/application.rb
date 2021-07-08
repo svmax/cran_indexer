@@ -25,5 +25,6 @@ module CranIndexer
     config.load_defaults 6.1
 
     config.autoload_paths += %W(#{config.root}/services)
+    config.autoload_paths += %W(#{config.root}/interactions)
   end
 end

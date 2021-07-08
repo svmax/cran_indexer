@@ -39,6 +39,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_interaction (4.0.4)
+      activemodel (>= 5, < 7)
+      activesupport (>= 5, < 7)
     activejob (6.1.4)
       activesupport (= 6.1.4)
       globalid (>= 0.3.6)
@@ -74,6 +77,10 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    kaminari-core (1.2.1)
+    kaminari-mongoid (1.0.1)
+      kaminari-core (~> 1.0)
+      mongoid
     listen (3.3.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -98,7 +105,7 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     parallel (1.20.1)
-    parser (3.0.1.1)
+    parser (3.0.2.0)
       ast (~> 2.4.1)
     puma (5.0.0)
       nio4r (~> 2.0)
@@ -133,7 +140,7 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rainbow (3.0.0)
-    rake (13.0.4)
+    rake (13.0.5)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -184,7 +191,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_interaction (= 4.0.4)
   bootsnap (= 1.7.5)
+  kaminari-mongoid (= 1.0.1)
   listen (= 3.3)
   mongoid (= 7.0.13)
   puma (= 5.0)
