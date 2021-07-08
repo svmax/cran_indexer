@@ -1,0 +1,5 @@
+# Temporary directories
+*
+
+!.gitignore
+!service-rails.conf
