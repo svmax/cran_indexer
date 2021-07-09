@@ -4,3 +4,4 @@ sidekiq_dispatcher: cd ./backend && bundle exec sidekiq -C config/sidekiq_dispat
 sidekiq_versioning_1: cd ./backend && bundle exec sidekiq -C config/sidekiq_versioning.yml
 sidekiq_versioning_2: cd ./backend && bundle exec sidekiq -C config/sidekiq_versioning.yml
 rails: cd ./backend && rails s -p 3000
+frontend: cd ./frontend && yarn serve
