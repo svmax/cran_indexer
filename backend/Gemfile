@@ -9,6 +9,7 @@ gem 'puma', '5.0'
 gem 'sidekiq', '6.2.1'
 gem 'active_interaction', '4.0.4'
 gem 'kaminari-mongoid', '1.0.1'
+gem 'rack-cors', '1.0'
 
 gem 'bootsnap', '1.7.5', require: false
 

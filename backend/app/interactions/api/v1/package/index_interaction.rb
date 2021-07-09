@@ -5,7 +5,7 @@ module Api
     module Package
       class IndexInteraction < BaseInteraction
         integer :page, default: 1
-        integer :per, default: 100
+        integer :per, default: 10
 
         def execute
           serialize_all ::Package.page(page).per(per)
@@ -25,7 +25,8 @@ module Api
         def serialize_one(item)
           {
             id: item.id.to_s,
-            name: item.name
+            name: item.name,
+            checksum: item.checksum
           }
         end
       end

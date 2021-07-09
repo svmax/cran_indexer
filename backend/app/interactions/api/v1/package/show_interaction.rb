@@ -16,6 +16,7 @@ module Api
           {
             name: item.name,
             id: item.id.to_s,
+            checksum: item.checksum,
             versions: extract_versions(item)
           }
         end

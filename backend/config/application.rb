@@ -26,5 +26,12 @@ module CranIndexer
 
     config.autoload_paths += %W(#{config.root}/services)
     config.autoload_paths += %W(#{config.root}/interactions)
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+         origins '*'
+         resource '*', headers: :any, methods: [:get, :post, :options]
+       end
+    end
   end
 end
