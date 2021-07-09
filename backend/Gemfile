@@ -21,3 +21,13 @@ group :development do
   gem 'listen', '3.3'
   gem 'spring'
 end
+
+group :test do
+  gem 'factory_bot_rails'
+  gem 'mongoid-rspec'
+  gem 'rspec-rails'
+  gem 'webmock'
+  gem 'rspec'
+  gem 'faker'
+  gem 'vcr'
+end
