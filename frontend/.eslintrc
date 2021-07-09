@@ -1,0 +1,37 @@
+{
+  "plugins": [
+    "vue"
+  ],
+  "env": {
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/recommended"
+  ],
+  "globals": {
+    "process": true,
+    "console": true
+  },
+  "rules": {
+    "sort-imports": [0],
+    "no-invalid-this": [0],
+    "no-return-assign": [0],
+    "arrow-body-style": [0],
+    "comma-dangle": [1, "always-multiline"],
+    "semi": ["error", "always"],
+    "vue/max-attributes-per-line": [0],
+    "vue/name-property-casing": [0],
+    "vue/html-self-closing": [0]
+  },
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
+}

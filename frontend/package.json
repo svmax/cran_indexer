@@ -1,0 +1,32 @@
+{
+  "name": "cran_indexer",
+  "license": "MIT",
+  "scripts": {
+    "serve": "vue-cli-service serve --port 3001",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "0.19.2",
+    "normalizr": "3.2.4",
+    "vue": "2.6.11",
+    "vue-router": "3.0.1",
+    "vuetify": "1.0.19",
+    "vuex": "3.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.6",
+    "@babel/plugin-proposal-class-properties": "7.8.3",
+    "@babel/preset-env": "7.9.6",
+    "@vue/cli-plugin-eslint": "4.3.0",
+    "@vue/cli-service": "4.3.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.1.0",
+    "postcss-smart-import": "0.7.6",
+    "precss": "3.1.2",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.2",
+    "vue-template-compiler": "2.6.11"
+  }
+}
