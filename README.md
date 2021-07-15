@@ -18,9 +18,9 @@ To start all of the needed servers, you could run `foreman start`. In case of th
 * `redis-server ./dbs/redis/service-rails.conf`
 
 <Depends on the number of cores (for me, it is 4 cores), we can tune Sidekiq processes. However, based on best practices, it is recommended not to use more than 50 threads (concurrency value in Sidekiq configs) per single core> Backend folder:
-* `bundle exec sidekiq -C config/sidekiq_dispatcher.yml`
-* `bundle exec sidekiq -C config/sidekiq_versioning.yml`
-* `bundle exec sidekiq -C config/sidekiq_versioning.yml`
+* `bundle exec sidekiq -C config/sidekiq/dispatcher.yml`
+* `bundle exec sidekiq -C config/sidekiq/versioning.yml`
+* `bundle exec sidekiq -C config/sidekiq/cron.yml`
 * `bundle exec rails s -p 3000`
 
 Frontend folder:

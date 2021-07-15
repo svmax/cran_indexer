@@ -1,5 +1,0 @@
-:concurrency: 10
-:retry: 3
-:queues:
-  - [package_dispatcher, 1]
-  - [versioning, 1]

@@ -2,7 +2,7 @@
 
 class IndexerWorker
   include Sidekiq::Worker
-  sidekiq_options queue: :versioning
+  sidekiq_options queue: :versioning, retry: 2
 
   def perform(args)
     args = args.with_indifferent_access

@@ -5,7 +5,7 @@ describe Package, type: :model do
   it { is_expected.to have_field(:name).of_type(String) }
   it { is_expected.to have_field(:checksum).of_type(String) }
 
-  it { is_expected.to have_index_for(name: 1) }
+  it { is_expected.to have_index_for(name: 1).with_options(unique: true) }
 
   it { is_expected.to have_many(:versions).with_dependent(:destroy) }
 end

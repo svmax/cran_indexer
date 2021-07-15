@@ -1,0 +1,3 @@
+:concurrency: 1
+:queues:
+  - [package_dispatcher, 1]

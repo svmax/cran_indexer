@@ -5,16 +5,7 @@ describe ::Cran::RepoService do
   let(:package_version) { '1.0.0' }
 
   before do
-    file_name = "#{package_name}_#{package_version}.tar.gz"
-    fix_file = [Rails.root, 'spec', 'fixtures', 'files', file_name].join('/')
-    archive = File.open(Tempfile.new(file_name), 'w') do |file|
-      file.binmode
-      file.write File.open(fix_file).read
-      file.flush
-      file.close
-      file
-    end
-
+    archive = download_archive(package_name, package_version)
     allow(::Cran::RepoService).to receive(:download_archive).and_return(archive)
   end
 

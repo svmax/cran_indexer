@@ -2,33 +2,43 @@
 
 class DispatcherWorker
   include Sidekiq::Worker
-  sidekiq_options queue: :package_dispatcher
+  sidekiq_options queue: :package_dispatcher, retry: 1
 
   def perform
     # params: { name: String, version: String, checksum: String }
     ::Cran::PackageService.receive_each_package do |params|
-      package = ::Package.find_by(name: params[:name])
-      next save_and_index_package!(params) unless package
+      package = ::Package.find_or_initialize_by(name: params[:name])
+      if package.new_record?
+        save_and_index_package!(package, params)
+        next
+      end
 
       if package.checksum != params[:checksum]
-        update_and_index_package!(package, params.merge(package_id: package.id.to_s))
+        update_and_index_package!(package, params)
       end
     end
   end
 
   private
 
-  def save_and_index_package!(params)
-    package_args = params.slice(:checksum, :name)
-    package = ::Package.find_or_create_by(package_args)
+  def save_and_index_package!(package, params)
+    indexer_args = package_args(params)
+    package.attributes = indexer_args
+    package.save
 
-    package_args[:version] = params[:version]
-    package_args[:package_id] = package.id.to_s
-    ::IndexerWorker.perform_async(package_args)
+    indexer_args[:package_id] = package.id.to_s
+    ::IndexerWorker.perform_async(indexer_args)
   end
 
   def update_and_index_package!(package, params)
+    indexer_args = package_args(params)
     package.update(checksum: params[:checksum])
-    ::IndexerWorker.perform_async(params.slice(:name, :version, :package_id))
+
+    indexer_args[:package_id] = package.id.to_s
+    ::IndexerWorker.perform_async(indexer_args)
+  end
+
+  def package_args(params)
+    params.slice(:checksum, :name, :version)
   end
 end

@@ -9,6 +9,8 @@ class Version
   field :description, type: String
   field :published_at, type: DateTime
 
+  index({ package_id: 1, number: 1 }, { unique: true })
+
   belongs_to :package
 
   has_and_belongs_to_many :authors, class_name: 'Contributor',

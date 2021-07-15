@@ -12,7 +12,7 @@ describe Api::V1::PackagesController, type: :controller do
     context 'package in response' do
       let(:name) { 'AA2' }
       let(:checksum) { 'jqggzbsieackrjob' }
-      let!(:package) { create(:package, name: name, checksum: checksum) }
+      let!(:package) { create(:package, :with_version, name: name, checksum: checksum) }
 
       it 'will return package info' do
         get :index
@@ -23,24 +23,28 @@ describe Api::V1::PackagesController, type: :controller do
         expect(data.size).to eq 1
       end
 
-      it 'should pagigate data' do
-        FactoryBot.create_list(:package, 10)
+      context 'pagination' do
+        before do
+          10.times { create(:package, :with_version) }
+        end
 
-        get :index
+        it 'should pagigate data' do
+          get :index
 
-        data = JSON.parse(response.body)
-        expect(data['items'].size).to eq 10
-        expect(data['total']).to eq 11
-        expect(data['per']).to eq 10
-        expect(data['page']).to eq 1
+          data = JSON.parse(response.body)
+          expect(data['items'].size).to eq 10
+          expect(data['total']).to eq 11
+          expect(data['per']).to eq 10
+          expect(data['page']).to eq 1
 
-        get :index, params: { page: 2 }
+          get :index, params: { page: 2 }
 
-        data = JSON.parse(response.body)
-        expect(data['items'].size).to eq 1
-        expect(data['total']).to eq 11
-        expect(data['per']).to eq 10
-        expect(data['page']).to eq 2
+          data = JSON.parse(response.body)
+          expect(data['items'].size).to eq 1
+          expect(data['total']).to eq 11
+          expect(data['per']).to eq 10
+          expect(data['page']).to eq 2
+        end
       end
     end
   end
@@ -48,7 +52,7 @@ describe Api::V1::PackagesController, type: :controller do
   describe '#show' do
     let!(:package) { create(:package, name: 'cranR') }
 
-    before { create(:version, package_id: package, number: '1.0.3') }
+    before { create(:version, :with_contributors, package_id: package, number: '1.0.3') }
 
     it 'should return empty array when nothing was indexed yet' do
       get :show, params: { id: package.id }

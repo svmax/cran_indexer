@@ -33,7 +33,7 @@ module Api
                         name: 1
                       }
                     },
-                    { '$skip': (page - 1) },
+                    { '$skip': skip },
                     { '$limit': per }
                   ]
                 }
@@ -57,7 +57,7 @@ module Api
           {
             per: per,
             page: page,
-            total: data[:total],
+            total: data[:total].to_i,
             items: data[:items].map(&method(:serialize_one))
           }
         end
@@ -66,6 +66,10 @@ module Api
           item[:version] = item[:version].last[:number]
           item[:_id] = item[:_id].to_s
           item
+        end
+
+        def skip
+          per * (page - 1)
         end
       end
     end
