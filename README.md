@@ -8,6 +8,9 @@ Cran server indexer
 * NodeJS
 * Foreman
 
+## Setup DB
++ bundle exec rake db:mongoid:create_indexesc
+
 ## Configuration
 To start all of the needed servers, you could run `foreman start`. In case of the mismatching of your working `bundler` with required by Gemfile, please, try to run all of them in separated console tabs (for comfort):
 

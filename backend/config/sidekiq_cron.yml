@@ -1,0 +1,6 @@
+:schedule:
+  package_dispatcher:
+    description: 'Fetching CRAN server any 12 AM'
+    queue: package_dispatcher
+    cron: '0 12 * * *'
+    class: DispatcherWorker

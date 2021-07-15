@@ -17,11 +17,14 @@
         disable-initial-sort
       >
         <template slot="items" slot-scope="props">
-          <td>{{ props.item.id }}</td>
+          <td>{{ props.item._id }}</td>
           <td>{{ props.item.checksum }}</td>
           <td>{{ props.item.name }}</td>
+          <td>{{ props.item.version }}</td>
           <td>
-            <router-link :to="`/packages/${props.item.id}`"> View </router-link>
+            <router-link :to="`/packages/${props.item._id}`">
+              View
+            </router-link>
           </td>
         </template>
       </v-data-table>
@@ -52,6 +55,7 @@ export default {
         { text: "ID", value: "id" },
         { text: "Checksum", value: "checksum" },
         { text: "Name", value: "name" },
+        { text: "Latest version", value: "version" },
         { text: "Actions", value: "", sortable: false },
       ];
     },

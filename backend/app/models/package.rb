@@ -7,5 +7,7 @@ class Package
   field :name, type: String
   field :checksum, type: String
 
+  index({ name: 1 }, { unique: true })
+
   has_many :versions, dependent: :destroy
 end
